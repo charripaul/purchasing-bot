@@ -17,7 +17,7 @@ public class Walmart extends Site{
 	private static final String EMAIL_TEXTBOX_SELECTOR = "#email";
 	private static final String PASSWORD_TEXTBOX_SELECTOR = "#password";
 	private static final String CONFIRM_SIGNIN_BUTTON_SELECTOR = "#sign-in-form > button.button.m-margin-top.text-inherit";
-	private static final String CAPTCHA_NOTIFICATION = "#sign-in-widget > h1";
+	private static final String CAPTCHA_NOTIFICATION = "#sign-in-widget > div.sign-in-widget > div > p";
 	private static final String HOME_ON_LOGIN_BUTTON_SELECTOR = "#sign-in-widget > a";
 	
 	public Walmart(WebDriver browser, String username, String password) {
@@ -67,7 +67,7 @@ public class Walmart extends Site{
 	public void captchaCheck() {		
 		WebElement captchaText = findElement(CAPTCHA_NOTIFICATION);
 		
-		while(captchaText != null && captchaText.getText().equalsIgnoreCase("Verify your identity")) {
+		while(captchaText != null && captchaText.getText().equalsIgnoreCase("Help us keep your account safe by clicking on the checkbox below.")) {
 			LOGGER.info("Awaiting Captcha");
 			
 			try {
