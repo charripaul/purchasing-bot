@@ -4,13 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.ventex.sites.Walmart;
 
 public class App {
 	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
@@ -20,8 +18,14 @@ public class App {
     	JSONObject config = parseJSONFile(basePath + "\\configuration.json"); 
     	System.setProperty("webdriver.chrome.driver", basePath + "\\resources\\chromedriver.exe");
     	
-        Bot bot1 = new Bot("https://www.walmart.com/ip/PlayStation-5-Console/363472942", config);
-        bot1.start();
+    	int botCount = 1;
+    	List<Bot> botList = new ArrayList<>();
+    	
+    	for(int x=0;x<botCount;x++) {
+    		Bot bot = new Bot("https://www.amazon.com/gp/product/B08FC5L3RG/ref=ox_sc_saved_title_4?smid=ATVPDKIKX0DER&psc=1", config);
+            bot.run();
+            botList.add(bot);
+    	}
     }
     
     public static JSONObject parseJSONFile(String filename) {

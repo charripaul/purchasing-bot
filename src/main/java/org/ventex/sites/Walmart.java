@@ -2,7 +2,6 @@ package org.ventex.sites;
 
 import java.util.logging.Logger;
 
-import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,15 +17,16 @@ public class Walmart extends Site{
 	private static final String PASSWORD_TEXTBOX_SELECTOR = "#password";
 	private static final String CONFIRM_SIGNIN_BUTTON_SELECTOR = "#sign-in-form > button.button.m-margin-top.text-inherit";
 	private static final String CAPTCHA_NOTIFICATION = "#sign-in-widget > div.sign-in-widget > div > p";
+	private static final String CAPTCHA_NOTIFICATION2 = "#sign-in-form > div.captcha.re-captcha > div > p";
 	private static final String HOME_ON_LOGIN_BUTTON_SELECTOR = "#sign-in-widget > a";
+	private static final String CART_NUM_SELECTOR = "#header-bubble-links";
 	
 	public Walmart(WebDriver browser, String username, String password) {
 		super(browser, username, password);
 	}
 
 	public void signout() {
-		WebElement accountButton = browser.findElement(By.cssSelector(ACCOUNT_BUTTON_SELECTOR));
-		accountButton.click();
+		openAccountPanel();
 		WebElement signoutButton = browser.findElement(By.cssSelector(SIGNOUT_BUTTON_SELECTOR));
 		
 		if(signoutButton.getText().equalsIgnoreCase("Sign out")) {
@@ -36,14 +36,12 @@ public class Walmart extends Site{
 			homeButton.click();
 		}
 		else {
-			WebElement homeButton = browser.findElement(By.cssSelector(CLOSE_ACCOUNT_BUTTON_SELECTOR));
-			homeButton.click();
+			closeAccountPanel();
 		}
 	}
 	
 	public void signin() {
-		WebElement accountButton = browser.findElement(By.cssSelector(ACCOUNT_BUTTON_SELECTOR));
-		accountButton.click();
+		openAccountPanel();
 		WebElement signinButton = browser.findElement(By.cssSelector(SIGNIN_BUTTON_SELECTOR));
 		
 		if(signinButton.getText().equalsIgnoreCase("Sign in")) {
@@ -66,8 +64,10 @@ public class Walmart extends Site{
 	
 	public void captchaCheck() {		
 		WebElement captchaText = findElement(CAPTCHA_NOTIFICATION);
+		WebElement captchaText2 = findElement(CAPTCHA_NOTIFICATION2);
 		
-		while(captchaText != null && captchaText.getText().equalsIgnoreCase("Help us keep your account safe by clicking on the checkbox below.")) {
+		while((captchaText != null && captchaText.getText().equalsIgnoreCase("Help us keep your account safe by clicking on the checkbox below.")) ||
+			  (captchaText2 != null && captchaText2.getText().equalsIgnoreCase("Help us keep your account safe by clicking on the checkbox below."))) {
 			LOGGER.info("Awaiting Captcha");
 			
 			try {
@@ -79,6 +79,22 @@ public class Walmart extends Site{
 		}
 		
 		LOGGER.info("Captcha cleared");
+	}
+	
+	//TODO: fix
+	public int getCartValue() {
+		WebElement cartValue = browser.findElement(By.cssSelector(CART_NUM_SELECTOR));
+		return Integer.parseInt(cartValue.getText());
+	}
+	
+	public void openAccountPanel() {
+		WebElement accountButton = browser.findElement(By.cssSelector(ACCOUNT_BUTTON_SELECTOR));
+		accountButton.click();
+	}
+	
+	public void closeAccountPanel() {
+		WebElement closeAccountButton = browser.findElement(By.cssSelector(CLOSE_ACCOUNT_BUTTON_SELECTOR));
+		closeAccountButton.click();
 	}
 	
 	public void guaranteeFreshSession() {

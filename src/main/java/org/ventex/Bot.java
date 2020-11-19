@@ -3,9 +3,9 @@ package org.ventex;
 import org.json.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.ventex.sites.Walmart;
+import org.ventex.sites.Amazon;
 
-public class Bot {
+public class Bot implements Runnable {
 	private WebDriver chrome;
 	private String url;
 	private String site;
@@ -18,10 +18,14 @@ public class Bot {
 		determineSite();
 	}
 	
-	public void start() {
-		if(site.equalsIgnoreCase("walmart")) {
-			Walmart walmart = new Walmart(chrome, config.getString("walmartUsername"), config.getString("walmartPassword"));
-			walmart.guaranteeFreshSession();
+	//implemented method that runs on a separate thread
+	@Override
+	public void run() {
+		if(site.equalsIgnoreCase("amazon")) {
+			new Thread(() -> {
+				Amazon amazon = new Amazon(chrome, config.getString("amazonUsername"), config.getString("amazonPassword"));
+				amazon.start();
+			}).start();
 		}
 	}
 	
@@ -35,8 +39,8 @@ public class Bot {
 	}
 	
 	private void determineSite() {
-		if(url.toLowerCase().contains("walmart")) {
-			site = "walmart";
+		if(url.toLowerCase().contains("amazon")) {
+			site = "amazon";
 		}
 		else{
 			site = "site";
