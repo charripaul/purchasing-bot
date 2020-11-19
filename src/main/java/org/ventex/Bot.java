@@ -1,14 +1,17 @@
 package org.ventex;
 
+import java.util.logging.Logger;
+
 import org.json.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.ventex.sites.Amazon;
 
-public class Bot implements Runnable {
+public class Bot {
+	private static final Logger LOGGER = Logger.getLogger(Bot.class.getName());
 	private WebDriver chrome;
 	private String url;
-	private String site;
+	private String siteName;
 	private JSONObject config;
 	
 	public Bot(String url, JSONObject config) {
@@ -18,15 +21,23 @@ public class Bot implements Runnable {
 		determineSite();
 	}
 	
-	//implemented method that runs on a separate thread
-	@Override
 	public void run() {
-		if(site.equalsIgnoreCase("amazon")) {
-			new Thread(() -> {
-				Amazon amazon = new Amazon(chrome, config.getString("amazonUsername"), config.getString("amazonPassword"));
+		Thread thread = null;
+		
+		if(siteName.equalsIgnoreCase("amazon")) {
+			thread = new Thread(() -> {
+				Amazon amazon = new Amazon(chrome, config.getString("amazonUsername"), config.getString("amazonPassword"));	
 				amazon.start();
-			}).start();
+			});
 		}
+		
+		if(thread != null) {
+			thread.start();
+		}
+		else {
+			LOGGER.severe("Website not recognized or not supported.\nURL: " + url);
+		}
+		
 	}
 	
 	public void openBrowser() {
@@ -40,10 +51,10 @@ public class Bot implements Runnable {
 	
 	private void determineSite() {
 		if(url.toLowerCase().contains("amazon")) {
-			site = "amazon";
+			siteName = "amazon";
 		}
 		else{
-			site = "site";
+			siteName = "site";
 		}
 	}
 }

@@ -1,10 +1,13 @@
 package org.ventex.sites;
 
+import java.util.logging.Logger;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class Site {
+public abstract class Site {
+	private static final Logger LOGGER = Logger.getLogger(Site.class.getName());
 	protected WebDriver browser;
 	protected String username;
 	protected String password;
@@ -25,5 +28,9 @@ public class Site {
 		}
 		
 		return element;
+	}
+	
+	public void start() {
+		LOGGER.info("Abstract Site class invoked");
 	}
 }

@@ -21,13 +21,14 @@ public class Amazon extends Site {
 		super(browser, username, password);
 	}
 	
+	@Override
 	public void start() {
 		try {
 			checkPage();
 			clickAddToCart();
 			proceedToCheckout();
 			signin();
-//			purchase();
+			purchase();
 		} catch (InterruptedException e) {
 			LOGGER.severe("Thread sleep error");
 		}
@@ -35,8 +36,6 @@ public class Amazon extends Site {
 	
 	private void checkPage() throws InterruptedException {
 		WebElement addToCartButton = findElement(ADD_TO_CART_SELECTOR);
-		LOGGER.info("No stock found, Sleeping for 60 secs");
-		Thread.sleep(60000);
 		
 		while(addToCartButton == null) {
 			LOGGER.info("Checking page for stock");
