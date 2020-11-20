@@ -43,8 +43,8 @@ public class Amazon extends Site {
 			browser.navigate().refresh();
 			addToCartButton = findElement(ADD_TO_CART_SELECTOR);
 			
-			LOGGER.info("No stock found, Sleeping for 60 secs");
-			Thread.sleep(60000);
+			LOGGER.info("No stock found, Sleeping for 10 secs");
+			Thread.sleep(10000);
 		}
 	}
 	

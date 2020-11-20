@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 
 public class App {
@@ -53,7 +54,7 @@ public class App {
         if (!chromeDriver.exists()) {
             try {
             	chromeDriver.createNewFile();
-				org.apache.commons.io.FileUtils.copyToFile(in, chromeDriver);
+				FileUtils.copyToFile(in, chromeDriver);
 			} catch (IOException e) {
 				LOGGER.severe("Error copying driver");
 			}
