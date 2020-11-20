@@ -1,1 +1,1 @@
-worker: java -jar /target/purchasing-bot-1.0.0.jar
+worker: java -jar target/purchasing-bot-1.0.0.jar
