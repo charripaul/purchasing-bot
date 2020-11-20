@@ -16,6 +16,7 @@ public class App {
 	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 	
     public static void main( String[] args ){
+    	System.out.println("Testing stdout logger");
     	setBinaryLocation();
     	Map<String, Object> config = getConfigData();
     	extractAndRunDriver("/chromedriver.exe");
