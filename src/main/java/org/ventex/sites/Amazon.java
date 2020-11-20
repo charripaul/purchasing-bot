@@ -28,7 +28,7 @@ public class Amazon extends Site {
 			clickAddToCart();
 			proceedToCheckout();
 			signin();
-			purchase();
+//			purchase();
 //			close();
 		} catch (InterruptedException e) {
 			LOGGER.severe("Thread sleep error");
@@ -49,12 +49,16 @@ public class Amazon extends Site {
 	}
 	
 	private void clickAddToCart() {
+		LOGGER.info("Adding to cart...");
+		
 		WebElement addToCartButton = browser.findElement(By.cssSelector(ADD_TO_CART_SELECTOR));
 		addToCartButton.click();
 	}
 	
 	private void proceedToCheckout() throws InterruptedException {
+		LOGGER.info("Proceeding to checkout...");
 		Thread.sleep(3000);			//wait for slidein animation
+		
 		WebElement proceedButton1 = findElement(PROCEED_TO_CHECKOUT_SELECTOR1);
 		WebElement proceedButton2 = findElement(PROCEED_TO_CHECKOUT_SELECTOR2);
 		
@@ -70,6 +74,8 @@ public class Amazon extends Site {
 	}
 	
 	private void signin() {
+		LOGGER.info("Signing in...");
+		
 		WebElement usernameTextbox = browser.findElement(By.cssSelector(USERNAME_TEXTBOX_SELECTOR));
 		usernameTextbox.click();
 		usernameTextbox.sendKeys(username);
@@ -86,8 +92,11 @@ public class Amazon extends Site {
 	}
 	
 	private void purchase() {
+		LOGGER.info("Placing order...");
+		
 		WebElement placeOrderButton = browser.findElement(By.cssSelector(PLACE_ORDER_SELECTOR));
 		placeOrderButton.click();
-		LOGGER.severe("Order placed, shutting down worker.");
+		
+		LOGGER.info("Order placed, shutting down worker.");
 	}
 }
