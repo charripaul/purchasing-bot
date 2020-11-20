@@ -88,5 +88,6 @@ public class Amazon extends Site {
 	private void purchase() {
 		WebElement placeOrderButton = browser.findElement(By.cssSelector(PLACE_ORDER_SELECTOR));
 		placeOrderButton.click();
+		LOGGER.severe("Order placed, shutting down worker.");
 	}
 }

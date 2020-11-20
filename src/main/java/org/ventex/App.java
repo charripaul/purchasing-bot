@@ -58,7 +58,6 @@ public class App {
         
         if(System.getenv("CHROMEDRIVER_PATH") == null) {
         	System.setProperty("webdriver.chrome.driver", chromeDriver.getAbsolutePath());
-        	System.out.println("test");
         }
         else {
         	System.setProperty("webdriver.chrome.driver", System.getenv("CHROMEDRIVER_PATH"));
