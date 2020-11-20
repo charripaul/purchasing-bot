@@ -28,7 +28,7 @@ public class Amazon extends Site {
 			clickAddToCart();
 			proceedToCheckout();
 			signin();
-//			purchase();
+			purchase();
 //			close();
 		} catch (InterruptedException e) {
 			LOGGER.severe("Thread sleep error");
@@ -43,7 +43,7 @@ public class Amazon extends Site {
 			browser.navigate().refresh();
 			addToCartButton = findElement(ADD_TO_CART_SELECTOR);
 			
-			LOGGER.info("No stock found, Sleeping for 10 secs");
+			LOGGER.info("No stock found, sleeping for 10 secs");
 			Thread.sleep(10000);
 		}
 	}

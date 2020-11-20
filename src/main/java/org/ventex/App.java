@@ -24,8 +24,7 @@ public class App {
     	List<Bot> botList = new ArrayList<>();
 
     	for(int x=0;x<botCount;x++) {
-//    		Bot bot = new Bot("https://www.amazon.com/gp/product/B08FC5L3RG/ref=ox_sc_saved_title_4?smid=ATVPDKIKX0DER&psc=1", config);
-    		Bot bot = new Bot("https://www.amazon.com/gp/product/B07VCTYNJT?pf_rd_r=SFV9WKV81SZ2YWQ3H1NH&pf_rd_p=edaba0ee-c2fe-4124-9f5d-b31d6b1bfbee", config);
+    		Bot bot = new Bot("https://www.amazon.com/gp/product/B08FC5L3RG/ref=ox_sc_saved_title_4?smid=ATVPDKIKX0DER&psc=1", config);
     		bot.run();
             botList.add(bot);
     	}
