@@ -33,4 +33,9 @@ public abstract class Site {
 	public void start() {
 		LOGGER.info("Abstract Site class invoked");
 	}
+	
+	//TODO: fix so that driver is closed without closing browser
+	protected void close() {
+		browser.close();
+	}
 }

@@ -29,6 +29,7 @@ public class Amazon extends Site {
 			proceedToCheckout();
 			signin();
 			purchase();
+//			close();
 		} catch (InterruptedException e) {
 			LOGGER.severe("Thread sleep error");
 		}
