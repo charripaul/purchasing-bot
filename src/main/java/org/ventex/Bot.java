@@ -45,10 +45,6 @@ public class Bot {
         chrome.get(this.url);
 	}
 	
-	public void quit() {
-		chrome.quit();
-	}
-	
 	private void determineSite() {
 		if(url.toLowerCase().contains("amazon")) {
 			siteName = "amazon";
