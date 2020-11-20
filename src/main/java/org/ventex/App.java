@@ -16,10 +16,9 @@ public class App {
 	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 	
     public static void main( String[] args ){
-    	System.out.println("Testing stdout logger");
     	setBinaryLocation();
     	Map<String, Object> config = getConfigData();
-    	extractAndRunDriver("/chromedriver.exe");
+    	extractDriver("/chromedriver.exe");
     	
     	int botCount = 1;
     	List<Bot> botList = new ArrayList<>();
@@ -39,7 +38,7 @@ public class App {
         return map;
     }
     
-    private static void extractAndRunDriver(String path) {
+    private static void extractDriver(String path) {
         InputStream in = App.class.getResourceAsStream(path);
         File f = new File("Driver");
         
@@ -57,7 +56,14 @@ public class App {
 			}
         }
         
-        System.setProperty("webdriver.chrome.driver", chromeDriver.getAbsolutePath());
+        if(System.getenv("CHROMEDRIVER_PATH") == null) {
+        	System.setProperty("webdriver.chrome.driver", chromeDriver.getAbsolutePath());
+        	System.out.println("test");
+        }
+        else {
+        	System.setProperty("webdriver.chrome.driver", System.getenv("CHROMEDRIVER_PATH"));
+        }
+        
         LOGGER.info("Chrome driver location set");
     }
     
