@@ -1,8 +1,8 @@
 package org.ventex;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
-import org.json.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.ventex.sites.Amazon;
@@ -12,9 +12,9 @@ public class Bot {
 	private WebDriver chrome;
 	private String url;
 	private String siteName;
-	private JSONObject config;
+	private Map<String, Object> config;
 	
-	public Bot(String url, JSONObject config) {
+	public Bot(String url, Map<String, Object> config) {
 		this.url = url;
 		this.config = config;
 		openBrowser();
@@ -26,7 +26,7 @@ public class Bot {
 		
 		if(siteName.equalsIgnoreCase("amazon")) {
 			thread = new Thread(() -> {
-				Amazon amazon = new Amazon(chrome, config.getString("amazonUsername"), config.getString("amazonPassword"));	
+				Amazon amazon = new Amazon(chrome, (String) config.get("amazonUsername"), (String) config.get("amazonPassword"));	
 				amazon.start();
 			});
 		}

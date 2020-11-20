@@ -1,22 +1,23 @@
 package org.ventex;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
-import org.json.JSONObject;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class App {
 	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 	
     public static void main( String[] args ){
-    	JSONObject config = parseJSONFile("/configuration.json");
+    	setBinaryLocation();
+    	Map<String, Object> config = getConfigData();
     	extractAndRunDriver("/chromedriver.exe");
     	
     	int botCount = 1;
@@ -29,17 +30,12 @@ public class App {
     	}
     }
     
-    public static JSONObject parseJSONFile(String filename) {
-    	String content = "";
-    	
-    	try(InputStream in = App.class.getResourceAsStream(filename)){
-    		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-    		for (String line; (line = reader.readLine()) != null; content += line);
-    	} catch (IOException e1) {
-			LOGGER.severe("Error parsing configuration file");
-		}
-		
-        return new JSONObject(content);
+    public static Map<String, Object> getConfigData() {
+    	Map<String, Object> map = new HashMap<>();
+        map.put("amazonUsername", System.getenv("amazonUsername"));
+        map.put("amazonPassword", System.getenv("amazonPassword"));
+        
+        return map;
     }
     
     private static void extractAndRunDriver(String path) {
@@ -61,5 +57,11 @@ public class App {
         }
         
         System.setProperty("webdriver.chrome.driver", chromeDriver.getAbsolutePath());
+    }
+    
+    private static void setBinaryLocation() {
+    	ChromeOptions options = new ChromeOptions();
+    	options.setBinary("GOOGLE_CHROME_BIN");
+    	options.addArguments("--headless", "--disable-dev-shm-usage", "--no-sandbox");
     }
 }
