@@ -58,11 +58,13 @@ public class App {
         }
         
         System.setProperty("webdriver.chrome.driver", chromeDriver.getAbsolutePath());
+        LOGGER.info("Chrome driver location set");
     }
     
     private static void setBinaryLocation() {
     	ChromeOptions options = new ChromeOptions();
     	options.setBinary("GOOGLE_CHROME_BIN");
     	options.addArguments("--headless", "--disable-dev-shm-usage", "--no-sandbox");
+    	LOGGER.info("Chrome binary location set");
     }
 }
