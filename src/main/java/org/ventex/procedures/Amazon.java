@@ -2,11 +2,8 @@ package org.ventex.procedures;
 
 import java.util.logging.Logger;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Amazon extends Procedure {
 	private static final Logger LOGGER = Logger.getLogger(Amazon.class.getName());
@@ -30,7 +27,7 @@ public class Amazon extends Procedure {
 			clickAddToCart();
 			proceedToCheckout();
 			signin();
-//			purchase();
+			purchase();
 //			close();
 		} catch (InterruptedException e) {
 			LOGGER.severe("Thread sleep error");
