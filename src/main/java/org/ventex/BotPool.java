@@ -58,7 +58,7 @@ public class BotPool {
 			while(true) {
 				for(int x=0;x<bots.size();x++) {
 					Bot bot = bots.get(x);
-					if(bot.getThread().isAlive() == false) {
+					if(bot.getThread() == null || bot.getThread().isAlive() == false) {
 						LOGGER.info("Dead Bot found.\nRestarting " + procedureName + "-" + id + " Bot-" + bot.getId());
 						bot.start();
 					}

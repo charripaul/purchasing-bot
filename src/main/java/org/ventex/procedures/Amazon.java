@@ -89,6 +89,8 @@ public class Amazon extends Procedure {
 		
 		WebElement signinButton = browser.findElement(By.cssSelector(SIGNIN_BUTTON_SELECTOR));
 		signinButton.click();
+		
+		LOGGER.info("Signed in");
 	}
 	
 	private void purchase() {

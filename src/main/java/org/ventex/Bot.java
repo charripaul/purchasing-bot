@@ -23,10 +23,10 @@ public class Bot implements Runnable{
 		this.url = url;
 		this.procedureName = procName;
 		this.config = config;
-		thread = new Thread(this);
 	}
 	
 	public void start() {
+		thread = new Thread(this);
 		thread.start();
 	}
 	
