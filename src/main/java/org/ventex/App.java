@@ -25,7 +25,7 @@ public class App {
     	links.add("https://www.amazon.com/Marvels-Avengers-PlayStation-4/dp/B07SFZX5CH/?_encoding=UTF8&pd_rd_w=9NhM0&pf_rd_p=42e00508-3a02-4e82-9e70-6ec0c1941802&pf_rd_r=SKF8F41F7YXABFKD6XX0&pd_rd_r=8c67b2ff-b443-4eb0-95a2-6d6bb63c92ad&pd_rd_wg=NyRLA&ref_=pd_gw_trq_rep_sims_gw");
     	
     	//1 bootpool for every link, instance count determines number of bots in botpool
-    	int instanceCount = 3;
+    	int instanceCount = 2;
     	List<BotPool> botPoolList = new ArrayList<>();
 
     	for(int x=0;x<links.size();x++) {
