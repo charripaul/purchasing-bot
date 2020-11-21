@@ -5,52 +5,62 @@ import java.util.logging.Logger;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.ventex.sites.Amazon;
+import org.ventex.procedures.Amazon;
+import org.ventex.procedures.Procedure;
 
-public class Bot {
+public class Bot implements Runnable{
 	private static final Logger LOGGER = Logger.getLogger(Bot.class.getName());
-	private WebDriver chrome;
+	private int id;
 	private String url;
-	private String siteName;
+	private WebDriver chrome;
+	private Procedure procedure;
+	private String procedureName;
 	private Map<String, Object> config;
+	private Thread thread;
 	
-	public Bot(String url, Map<String, Object> config) {
+	public Bot(int id, String url, String procName, Map<String, Object> config) {
+		this.id = id;
 		this.url = url;
+		this.procedureName = procName;
 		this.config = config;
-		openBrowser();
-		determineSite();
+		thread = new Thread(this);
 	}
 	
+	public void start() {
+		thread.start();
+	}
+	
+	@Override
 	public void run() {
-		Thread thread = null;
-		
-		if(siteName.equalsIgnoreCase("amazon")) {
-			thread = new Thread(() -> {
-				Amazon amazon = new Amazon(chrome, (String) config.get("amazonUsername"), (String) config.get("amazonPassword"));	
-				amazon.start();
-			});
+		LOGGER.info("Starting Bot-" + id);
+		openBrowser(url);
+		setProcedure();
+		procedure.start();
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public Thread getThread() {
+		return thread;
+	}
+	
+	private void openBrowser(String url) {
+		if(chrome != null) {
+			chrome.close();
 		}
 		
-		if(thread != null) {
-			thread.start();
+		chrome = new ChromeDriver();
+        chrome.get(url);
+	}
+	
+	private void setProcedure() {
+		if(procedureName.equalsIgnoreCase("amazon")) {
+			procedure = new Amazon(chrome, (String) config.get("amazonUsername"), (String) config.get("amazonPassword"));
 		}
 		else {
-			LOGGER.severe("Website not recognized or not supported.\nURL: " + url);
-		}
-		
-	}
-	
-	public void openBrowser() {
-		chrome = new ChromeDriver();
-        chrome.get(this.url);
-	}
-	
-	private void determineSite() {
-		if(url.toLowerCase().contains("amazon")) {
-			siteName = "amazon";
-		}
-		else{
-			siteName = "site";
+			procedure = null;
 		}
 	}
 }

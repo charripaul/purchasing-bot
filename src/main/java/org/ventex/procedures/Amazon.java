@@ -1,4 +1,4 @@
-package org.ventex.sites;
+package org.ventex.procedures;
 
 import java.util.logging.Logger;
 
@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class Amazon extends Site {
+public class Amazon extends Procedure {
 	private static final Logger LOGGER = Logger.getLogger(Amazon.class.getName());
 	private final String ADD_TO_CART_SELECTOR = "#add-to-cart-button";
 	private final String PROCEED_TO_CHECKOUT_SELECTOR1 = "#attach-sidesheet-checkout-button > span > input";

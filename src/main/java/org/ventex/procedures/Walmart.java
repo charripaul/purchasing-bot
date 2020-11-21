@@ -1,4 +1,4 @@
-package org.ventex.sites;
+package org.ventex.procedures;
 
 import java.util.logging.Logger;
 
@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class Walmart extends Site{
+public class Walmart extends Procedure{
 	private static final Logger LOGGER = Logger.getLogger(Walmart.class.getName());
 	
 	private static final String ACCOUNT_BUTTON_SELECTOR = "#hf-account-flyout > span";

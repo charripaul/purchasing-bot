@@ -1,4 +1,4 @@
-package org.ventex.sites;
+package org.ventex.procedures;
 
 import java.util.logging.Logger;
 
@@ -6,13 +6,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public abstract class Site {
-	private static final Logger LOGGER = Logger.getLogger(Site.class.getName());
+public abstract class Procedure {
+	private static final Logger LOGGER = Logger.getLogger(Procedure.class.getName());
 	protected WebDriver browser;
 	protected String username;
 	protected String password;
 	
-	public Site(WebDriver browser, String username, String password) {
+	public Procedure(WebDriver browser, String username, String password) {
 		this.browser = browser;
 		this.username = username;
 		this.password = password;
