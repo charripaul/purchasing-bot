@@ -28,7 +28,7 @@ public class Amazon extends Procedure {
 			clickAddToCart();
 			proceedToCheckout();
 			signin();
-			purchase();
+//			purchase();
 //			close();
 		} catch (InterruptedException e) {
 			LOGGER.severe("Thread sleep error");
