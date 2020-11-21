@@ -24,7 +24,7 @@ public class App {
     	links.add("https://www.amazon.com/dp/B08FC6MR62/?coliid=IH90F1G2RL9K5&colid=6DFCB5FA7VGW&psc=0&ref_=lv_ov_lig_dp_it_im");
     	
     	//1 bootpool for every link, instance count determines number of bots in botpool
-    	int instanceCount = 2;
+    	int instanceCount = 1;
     	List<BotPool> botPoolList = new ArrayList<>();
 
     	for(int x=0;x<links.size();x++) {
