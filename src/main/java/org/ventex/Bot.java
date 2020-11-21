@@ -51,7 +51,7 @@ public class Bot implements Runnable{
 			chrome.close();
 		}
 		
-		chrome = new ChromeDriver();
+		chrome = new ChromeDriver(App.getChromeOptions());
         chrome.get(url);
 	}
 	
