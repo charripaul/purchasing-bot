@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Amazon extends Procedure {
 	private static final Logger LOGGER = Logger.getLogger(Amazon.class.getName());
@@ -51,8 +53,7 @@ public class Amazon extends Procedure {
 	private void clickAddToCart() {
 		LOGGER.info("Adding to cart...");
 		
-		WebElement addToCartButton = browser.findElement(By.cssSelector(ADD_TO_CART_SELECTOR));
-		addToCartButton.click();
+		click(ADD_TO_CART_SELECTOR);
 	}
 	
 	private void proceedToCheckout() throws InterruptedException {
@@ -63,10 +64,10 @@ public class Amazon extends Procedure {
 		WebElement proceedButton2 = findElement(PROCEED_TO_CHECKOUT_SELECTOR2);
 		
 		if(proceedButton1 != null) {
-			proceedButton1.click();
+			click(PROCEED_TO_CHECKOUT_SELECTOR1);
 		}
 		else if(proceedButton2 != null) {
-			proceedButton2.click();
+			click(PROCEED_TO_CHECKOUT_SELECTOR2);
 		}
 		else {
 			LOGGER.severe("Proceed to checkout button not found.");
@@ -76,19 +77,12 @@ public class Amazon extends Procedure {
 	private void signin() {
 		LOGGER.info("Signing in...");
 		
-		WebElement usernameTextbox = browser.findElement(By.cssSelector(USERNAME_TEXTBOX_SELECTOR));
-		usernameTextbox.click();
-		usernameTextbox.sendKeys(username);
-		
-		WebElement usernameContinueButton = browser.findElement(By.cssSelector(USERNAME_CONTINUE_SELECTOR));
-		usernameContinueButton.click();
-		
-		WebElement passwordTextbox = browser.findElement(By.cssSelector(PASSWORD_TEXTBOX_SELECTOR));
-		passwordTextbox.click();
-		passwordTextbox.sendKeys(password);
-		
-		WebElement signinButton = browser.findElement(By.cssSelector(SIGNIN_BUTTON_SELECTOR));
-		signinButton.click();
+		click(USERNAME_TEXTBOX_SELECTOR);
+		sendKeys(USERNAME_TEXTBOX_SELECTOR, username);
+		click(USERNAME_CONTINUE_SELECTOR);
+		click(PASSWORD_TEXTBOX_SELECTOR);
+		sendKeys(PASSWORD_TEXTBOX_SELECTOR, password);
+		click(SIGNIN_BUTTON_SELECTOR);
 		
 		LOGGER.info("Signed in");
 	}
@@ -96,8 +90,7 @@ public class Amazon extends Procedure {
 	private void purchase() {
 		LOGGER.info("Placing order...");
 		
-		WebElement placeOrderButton = browser.findElement(By.cssSelector(PLACE_ORDER_SELECTOR));
-		placeOrderButton.click();
+		click(PLACE_ORDER_SELECTOR);
 		
 		LOGGER.info("Order placed, shutting down worker.");
 	}

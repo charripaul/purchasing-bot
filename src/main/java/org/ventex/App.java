@@ -21,8 +21,8 @@ public class App {
     	
     	List<String> links = new ArrayList<>();
 //    	links.add("https://www.amazon.com/gp/product/B08FC5L3RG/ref=ox_sc_saved_title_4?smid=ATVPDKIKX0DER&psc=1");
-//    	links.add("https://www.amazon.com/dp/B08FC6MR62/?coliid=IH90F1G2RL9K5&colid=6DFCB5FA7VGW&psc=0&ref_=lv_ov_lig_dp_it_im");
-    	links.add("https://www.amazon.com/Marvels-Avengers-PlayStation-4/dp/B07SFZX5CH/?_encoding=UTF8&pd_rd_w=9NhM0&pf_rd_p=42e00508-3a02-4e82-9e70-6ec0c1941802&pf_rd_r=SKF8F41F7YXABFKD6XX0&pd_rd_r=8c67b2ff-b443-4eb0-95a2-6d6bb63c92ad&pd_rd_wg=NyRLA&ref_=pd_gw_trq_rep_sims_gw");
+    	links.add("https://www.amazon.com/dp/B08FC6MR62/?coliid=IH90F1G2RL9K5&colid=6DFCB5FA7VGW&psc=0&ref_=lv_ov_lig_dp_it_im");
+//    	links.add("https://www.amazon.com/Marvels-Avengers-PlayStation-4/dp/B07SFZX5CH/?_encoding=UTF8&pd_rd_w=9NhM0&pf_rd_p=42e00508-3a02-4e82-9e70-6ec0c1941802&pf_rd_r=SKF8F41F7YXABFKD6XX0&pd_rd_r=8c67b2ff-b443-4eb0-95a2-6d6bb63c92ad&pd_rd_wg=NyRLA&ref_=pd_gw_trq_rep_sims_gw");
     	
     	//1 bootpool for every link, instance count determines number of bots in botpool
     	int instanceCount = 2;

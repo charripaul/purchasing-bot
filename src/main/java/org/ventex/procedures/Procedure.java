@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class Procedure {
 	private static final Logger LOGGER = Logger.getLogger(Procedure.class.getName());
@@ -34,8 +36,13 @@ public abstract class Procedure {
 		LOGGER.info("Abstract Site class invoked");
 	}
 	
-	//TODO: fix so that driver is closed without closing browser
-	protected void close() {
-		browser.close();
+	protected void click(String css) {
+		WebDriverWait wait = new WebDriverWait(browser, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css))).click();
+	}
+	
+	protected void sendKeys(String css, String text) {
+		WebDriverWait wait = new WebDriverWait(browser, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css))).sendKeys(text);
 	}
 }
