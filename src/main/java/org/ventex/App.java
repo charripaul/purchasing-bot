@@ -63,7 +63,7 @@ public class App {
     
     public static ChromeOptions getChromeOptions() {
     	ChromeOptions options = new ChromeOptions();
-//    	options.setBinary("GOOGLE_CHROME_BIN");
+
     	if(System.getenv("CHROMEDRIVER_PATH") != null) {
     		options.addArguments("--headless", "--disable-dev-shm-usage", "--no-sandbox");
     		LOGGER.info("Heroku Environment detected, adding low resource usage Chrome Options");

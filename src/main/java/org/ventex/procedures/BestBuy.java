@@ -67,7 +67,7 @@ public class BestBuy extends Procedure{
 	public void checkout() throws InterruptedException {
 		LOGGER.info("Checking out...");
 		
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		click(CHECKOUT_SELECTOR);
 	}
 	
@@ -93,7 +93,7 @@ public class BestBuy extends Procedure{
 			sendKeys(SEC_CODE_SELECTOR, System.getenv("bestbuySec"));
 		}
 		
-//		click(PLACE_ORDER_SELECTOR);
+		click(PLACE_ORDER_SELECTOR);
 		
 		LOGGER.info("Order placed, shutting down worker.");
 	}
