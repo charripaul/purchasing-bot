@@ -3,13 +3,14 @@ package org.ventex.procedures;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class Procedure {
-	protected WebDriver browser;
+	protected ChromeDriver browser;
 	
-	public Procedure(WebDriver browser) {
+	public Procedure(ChromeDriver browser) {
 		this.browser = browser;
 	}
 	
