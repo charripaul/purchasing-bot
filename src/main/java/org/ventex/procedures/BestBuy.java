@@ -43,7 +43,7 @@ public class BestBuy extends Procedure{
 			browser.navigate().refresh();
 			addToCartButton = findElementByXPath(ADD_TO_CART_XPATH);
 			
-			LOGGER.info("No stock found, sleeping for 10 secs");
+			LOGGER.info("No stock found, sleeping for 20 secs");
 			Thread.sleep(20000);
 		}
 	}
