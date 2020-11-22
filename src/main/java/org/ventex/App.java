@@ -64,10 +64,10 @@ public class App {
     public static ChromeOptions getChromeOptions() {
     	ChromeOptions options = new ChromeOptions();
 
-    	if(System.getenv("CHROMEDRIVER_PATH") != null) {
-    		options.addArguments("--disable-dev-shm-usage", "--no-sandbox");
+//    	if(System.getenv("CHROMEDRIVER_PATH") != null) {
+    		options.addArguments("--headless", "--disable-dev-shm-usage", "--no-sandbox", "--window-size=1280,720", "--disable-gpu");
     		LOGGER.info("Heroku Environment detected, adding low resource usage Chrome Options");
-    	}
+//    	}
     	
     	return options;
     }
