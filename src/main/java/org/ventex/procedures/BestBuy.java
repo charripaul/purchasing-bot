@@ -8,13 +8,14 @@ import org.openqa.selenium.WebElement;
 public class BestBuy extends Procedure{
 	private static final Logger LOGGER = Logger.getLogger(BestBuy.class.getName());
 	private final String ADD_TO_CART_XPATH = "//*[contains(text(), 'Add to Cart')]";
-	private final String GO_TO_CART_XPATH = "//*[contains(text(), 'Go to Cart')]";
 	private final String CHECKOUT_SELECTOR = "#cartApp > div.page-spinner.page-spinner--out > div.large-view > div > div > span > div > div.fluid-large-view > div.fluid-large-view__upper-container > section.fluid-large-view__sidebar > div > div > div.order-summary__checkout-buttons-container > div > div.checkout-buttons__checkout > button";
 	private final String USERNAME_TEXTBOX_SELECTOR = "#fld-e";
 	private final String PASSWORD_TEXTBOX_SELECTOR = "#fld-p1";
 	private final String SIGN_IN_SELECTOR = "body > div.cia-app-container > div > section > main > div.cia-content.js-cia-content > div > div > div > div > form > div.cia-form__controls > button";
 	private final String SEC_CODE_SELECTOR = "#credit-card-cvv";
 	private final String PLACE_ORDER_SELECTOR = "#checkoutApp > div.page-spinner.page-spinner--out > div:nth-child(1) > div.checkout.large-view.fast-track > main > div.checkout__container.checkout__container-fast-track > div.checkout__col.checkout__col--primary > div > div.checkout-panel.contact-card > div.contact-card__order-button > div > button";
+	private final String HOME_SELECTOR = "#header-block > div.header-large > div.top-navigation-section > div > div.bby-logo-lv > a > img";
+	private final String CART_SELECTOR = "#shop-cart-icon-c5a68aa4-95cc-4d74-bb98-644b93324051 > div > div > div > a > img";
 	
 	public BestBuy(WebDriver browser) {
 		super(browser);
@@ -58,14 +59,15 @@ public class BestBuy extends Procedure{
 	public void goToCart() throws InterruptedException {
 		LOGGER.info("Going to cart...");
 		
-		Thread.sleep(30000);
-		clickByXPath(GO_TO_CART_XPATH);
+		click(HOME_SELECTOR);
+		Thread.sleep(3000);
+		click(CART_SELECTOR);
 	}
 	
 	public void checkout() throws InterruptedException {
 		LOGGER.info("Checking out...");
 		
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		click(CHECKOUT_SELECTOR);
 	}
 	
