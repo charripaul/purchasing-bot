@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -64,6 +65,9 @@ public abstract class Procedure {
 			}catch(NoSuchElementException e) {
 				pass = false;
 				LOGGER.warning("Retrying previous click");
+			}catch(TimeoutException e) {
+				pass = false;
+				LOGGER.warning("Retrying previous click");
 			}
 		}
 	}
@@ -77,6 +81,9 @@ public abstract class Procedure {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css))).click();
 				pass = true;
 			}catch(NoSuchElementException e) {
+				pass = false;
+				LOGGER.warning("Retrying previous click");
+			}catch(TimeoutException e) {
 				pass = false;
 				LOGGER.warning("Retrying previous click");
 			}
