@@ -89,16 +89,7 @@ public class BestBuy extends Procedure{
 			sendKeys(SEC_CODE_SELECTOR, System.getenv("bestbuySec"));
 		}
 		
-		WebElement placeOrderButton = findElementBySelector(PLACE_ORDER_SELECTOR);
-		if(placeOrderButton != null) {
-			System.out.println("place order button found");
-			click(PLACE_ORDER_SELECTOR);
-			
-		}
-		else {
-			System.out.println("not found");
-		}
-		
+		click(PLACE_ORDER_SELECTOR);
 		
 		LOGGER.info("Order placed, shutting down worker.");
 	}
