@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Amazon extends Procedure {
 	private static final Logger LOGGER = Logger.getLogger(Amazon.class.getName());
@@ -17,7 +16,7 @@ public class Amazon extends Procedure {
 	private final String SIGNIN_BUTTON_SELECTOR = "#signInSubmit";
 	private final String PLACE_ORDER_SELECTOR = "#submitOrderButtonId > span > input";
 	
-	public Amazon(ChromeDriver browser) {
+	public Amazon(WebDriver browser) {
 		super(browser);
 	}
 	

@@ -3,18 +3,16 @@ package org.ventex;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.ventex.procedures.Amazon;
 import org.ventex.procedures.BestBuy;
 import org.ventex.procedures.Procedure;
 
 public class Bot implements Runnable{
 	private static final Logger LOGGER = Logger.getLogger(Bot.class.getName());
-	private static ChromeOptions options;
 	private int id;
 	private String url;
-	private ChromeDriver chrome;
+	private WebDriver browser;
 	private Procedure procedure;
 	private String procedureName;
 	private Thread thread;
@@ -23,15 +21,6 @@ public class Bot implements Runnable{
 		this.id = id;
 		this.url = url;
 		this.procedureName = procName;
-		options = new ChromeOptions();
-		options.addArguments("--headless");
-		options.addArguments("window-sized1200,600");
-		options.addArguments("--proxy-server=*");
-		options.addArguments("--proxy-bypass-list=*");
-		options.addArguments( "--disable-dev-shm-usage");
-		options.addArguments("--disable-gpu");
-		options.addArguments("--no-proxy-server");
-		options.addArguments("--no-sandbox");
 	}
 	
 	public void start() {
@@ -56,35 +45,25 @@ public class Bot implements Runnable{
 	}
 	
 	private void openBrowser(String url) {
-		if(chrome != null) {
-			chrome.close();
+		if(browser != null) {
+			browser.close();
 		}
 		
-		chrome = new ChromeDriver(options);
-		chrome.get(url);
+		browser = new FirefoxDriver(App.browserOptions);
+		browser.get(url);
 	}
 	
 	private void setProcedure() {
 		if(procedureName.equalsIgnoreCase("amazon")) {
-			procedure = new Amazon(chrome);
+			procedure = new Amazon(browser);
 		}
 		else if(procedureName.equalsIgnoreCase("bestbuy")) {
-			procedure = new BestBuy(chrome);
+			procedure = new BestBuy(browser);
 		}
 		else {
 			procedure = null;
 		}
 	}
 	
-	 public static ChromeOptions getChromeOptions() {
-    	ChromeOptions options = new ChromeOptions();
-
-//	    	if(System.getenv("CHROMEDRIVER_PATH") != null) {
-
-		options.addArguments("--proxy-server='direct://'", "--proxy-bypass-list=*", "--window-size=1920,1080", "--headless", "--disable-dev-shm-usage", "--disable-gpu");
-		LOGGER.info("Heroku Environment detected, adding low resource usage Chrome Options");
-//	    	}
-		
-		return options;
-	}
+	 
 }

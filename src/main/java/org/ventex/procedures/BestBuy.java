@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BestBuy extends Procedure{
 	private static final Logger LOGGER = Logger.getLogger(BestBuy.class.getName());
@@ -17,7 +16,7 @@ public class BestBuy extends Procedure{
 	private final String PLACE_ORDER_SELECTOR = "#checkoutApp > div.page-spinner.page-spinner--out > div:nth-child(1) > div.checkout.large-view.fast-track > main > div.checkout__container.checkout__container-fast-track > div.checkout__col.checkout__col--primary > div > div.checkout-panel.contact-card > div.contact-card__order-button > div > button";
 	private final String GO_TO_CART_XPATH = "//*[contains(text(), 'Go to Cart')]";
 	
-	public BestBuy(ChromeDriver browser) {
+	public BestBuy(WebDriver browser) {
 		super(browser);
 	}
 	
