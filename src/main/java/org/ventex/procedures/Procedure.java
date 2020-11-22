@@ -1,6 +1,9 @@
 package org.ventex.procedures;
 
+import java.util.logging.Logger;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class Procedure {
 	protected WebDriver browser;
+	private static final Logger LOGGER = Logger.getLogger(Procedure.class.getName());
 	
 	public Procedure(WebDriver browser) {
 		this.browser = browser;
@@ -50,13 +54,33 @@ public abstract class Procedure {
 	}
 	
 	protected void clickByXPath(String xpath) {
-		WebDriverWait wait = new WebDriverWait(browser, 20);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).click();
+		boolean pass = false;
+		
+		while(pass == false) {
+			try {
+				WebDriverWait wait = new WebDriverWait(browser, 20);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).click();
+			}catch(NoSuchElementException e) {
+				pass = false;
+				LOGGER.warning("Retrying previous click");
+			}
+		}
 	}
 	
 	protected void click(String css) {
-		WebDriverWait wait = new WebDriverWait(browser, 20);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css))).click();
+		boolean pass = false;
+		
+		while(pass == false) {
+			try {
+				WebDriverWait wait = new WebDriverWait(browser, 20);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css))).click();
+				pass = true;
+			}catch(NoSuchElementException e) {
+				pass = false;
+				LOGGER.warning("Retrying previous click");
+			}
+		}
+		
 	}
 	
 	protected void sendKeys(String css, String text) {
