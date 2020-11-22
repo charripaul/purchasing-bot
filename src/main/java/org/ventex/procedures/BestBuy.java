@@ -14,7 +14,7 @@ public class BestBuy extends Procedure{
 	private final String PASSWORD_TEXTBOX_SELECTOR = "#fld-p1";
 	private final String SIGN_IN_SELECTOR = "body > div.cia-app-container > div > section > main > div.cia-content.js-cia-content > div > div > div > div > form > div.cia-form__controls > button";
 	private final String SEC_CODE_SELECTOR = "#credit-card-cvv";
-	private final String PLACE_ORDER_XPATH = "//*[contains(text(), 'Place Your Order')]";
+	private final String PLACE_ORDER_SELECTOR = "#checkoutApp > div.page-spinner.page-spinner--out > div:nth-child(1) > div.checkout.large-view.fast-track > main > div.checkout__container.checkout__container-fast-track > div.checkout__col.checkout__col--primary > div > div.checkout-panel.contact-card > div.contact-card__order-button > div > button";
 	
 	public BestBuy(WebDriver browser) {
 		super(browser);
@@ -28,6 +28,7 @@ public class BestBuy extends Procedure{
 			checkout();
 			signin();
 			purchase();
+			Thread.sleep(15000);
 			browser.close();
 		} catch (InterruptedException e) {
 			LOGGER.info("Thread sleep error");
@@ -74,18 +75,24 @@ public class BestBuy extends Procedure{
 		click(PASSWORD_TEXTBOX_SELECTOR);
 		sendKeys(PASSWORD_TEXTBOX_SELECTOR, System.getenv("bestbuyPassword"));
 		click(SIGN_IN_SELECTOR);
+		
+		LOGGER.info("Signed in");
 	}
 	
-	public void purchase() {
+	public void purchase() throws InterruptedException {
 		LOGGER.info("Placing Order...");
+		Thread.sleep(5000);
 		
-		click(SEC_CODE_SELECTOR);
-		sendKeys(SEC_CODE_SELECTOR, System.getenv("bestbuySec"));
-		clickByXPath(PLACE_ORDER_XPATH);
+		WebElement secCode = findElementBySelector(SEC_CODE_SELECTOR);
+		if(secCode != null) {
+			click(SEC_CODE_SELECTOR);
+			sendKeys(SEC_CODE_SELECTOR, System.getenv("bestbuySec"));
+		}
 		
-		WebElement placeOrderButton = findElementByXPath(PLACE_ORDER_XPATH);
+		WebElement placeOrderButton = findElementBySelector(PLACE_ORDER_SELECTOR);
 		if(placeOrderButton != null) {
 			System.out.println("place order button found");
+			click(PLACE_ORDER_SELECTOR);
 			
 		}
 		else {
