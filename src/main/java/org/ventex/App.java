@@ -20,7 +20,7 @@ public class App {
 //    	links.add("https://www.amazon.com/gp/product/B08FC5L3RG/ref=ox_sc_saved_title_4?smid=ATVPDKIKX0DER&psc=1");
 //    	links.add("https://www.amazon.com/dp/B08FC6MR62/?coliid=INMNG23U2KWCV&colid=13HJVDSXIWZQ&psc=0&ref_=lv_ov_lig_dp_it");
 //    	links.add("https://www.bestbuy.com/site/sony-playstation-5-console/6426149.p?skuId=6426149");
-    	links.add("https://www.bestbuy.com/site/marvels-spider-man-miles-morales-launch-edition-playstation-4/6430158.p?skuId=6430158");
+    	links.add("https://www.bestbuy.com/site/marvels-spider-man-miles-morales-standard-launch-edition-playstation-5/6430146.p?skuId=6430146");
     	
     	//1 bootpool for every link, instance count determines number of bots in botpool
     	int instanceCount = 1;
@@ -65,7 +65,7 @@ public class App {
     	ChromeOptions options = new ChromeOptions();
 
     	if(System.getenv("CHROMEDRIVER_PATH") != null) {
-    		options.addArguments("--headless", "--disable-dev-shm-usage", "--no-sandbox");
+    		options.addArguments("--disable-dev-shm-usage", "--no-sandbox");
     		LOGGER.info("Heroku Environment detected, adding low resource usage Chrome Options");
     	}
     	
