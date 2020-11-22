@@ -50,17 +50,17 @@ public abstract class Procedure {
 	}
 	
 	protected void clickByXPath(String xpath) {
-		WebDriverWait wait = new WebDriverWait(browser, 20);
+		WebDriverWait wait = new WebDriverWait(browser, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).click();
 	}
 	
 	protected void click(String css) {
-		WebDriverWait wait = new WebDriverWait(browser, 20);
+		WebDriverWait wait = new WebDriverWait(browser, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css))).click();
 	}
 	
 	protected void sendKeys(String css, String text) {
-		WebDriverWait wait = new WebDriverWait(browser, 20);
+		WebDriverWait wait = new WebDriverWait(browser, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css))).sendKeys(text);
 	}
 	
