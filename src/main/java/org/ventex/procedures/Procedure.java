@@ -65,9 +65,11 @@ public abstract class Procedure {
 			}catch(NoSuchElementException e) {
 				pass = false;
 				LOGGER.warning("Retrying previous click");
+				browser.navigate().refresh();
 			}catch(TimeoutException e) {
 				pass = false;
 				LOGGER.warning("Retrying previous click");
+				browser.navigate().refresh();
 			}
 		}
 	}
@@ -83,9 +85,11 @@ public abstract class Procedure {
 			}catch(NoSuchElementException e) {
 				pass = false;
 				LOGGER.warning("Retrying previous click");
+				browser.navigate().refresh();
 			}catch(TimeoutException e) {
 				pass = false;
 				LOGGER.warning("Retrying previous click");
+				browser.navigate().refresh();
 			}
 		}
 		
