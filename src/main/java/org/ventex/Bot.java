@@ -64,6 +64,4 @@ public class Bot implements Runnable{
 			procedure = null;
 		}
 	}
-	
-	 
 }
