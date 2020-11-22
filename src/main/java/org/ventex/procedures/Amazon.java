@@ -16,8 +16,8 @@ public class Amazon extends Procedure {
 	private final String SIGNIN_BUTTON_SELECTOR = "#signInSubmit";
 	private final String PLACE_ORDER_SELECTOR = "#submitOrderButtonId > span > input";
 	
-	public Amazon(WebDriver browser, String username, String password) {
-		super(browser, username, password);
+	public Amazon(WebDriver browser) {
+		super(browser);
 	}
 	
 	@Override
@@ -28,19 +28,19 @@ public class Amazon extends Procedure {
 			proceedToCheckout();
 			signin();
 			purchase();
-//			close();
+			browser.close();
 		} catch (InterruptedException e) {
 			LOGGER.severe("Thread sleep error");
 		}
 	}
 	
 	private void checkPage() throws InterruptedException {
-		WebElement addToCartButton = findElement(ADD_TO_CART_SELECTOR);
+		WebElement addToCartButton = findElementBySelector(ADD_TO_CART_SELECTOR);
 		
 		while(addToCartButton == null) {
 			LOGGER.info("Checking page for stock");
 			browser.navigate().refresh();
-			addToCartButton = findElement(ADD_TO_CART_SELECTOR);
+			addToCartButton = findElementBySelector(ADD_TO_CART_SELECTOR);
 			
 			LOGGER.info("No stock found, sleeping for 10 secs");
 			Thread.sleep(10000);
@@ -57,8 +57,8 @@ public class Amazon extends Procedure {
 		LOGGER.info("Proceeding to checkout...");
 		Thread.sleep(3000);			//wait for slidein animation
 		
-		WebElement proceedButton1 = findElement(PROCEED_TO_CHECKOUT_SELECTOR1);
-		WebElement proceedButton2 = findElement(PROCEED_TO_CHECKOUT_SELECTOR2);
+		WebElement proceedButton1 = findElementBySelector(PROCEED_TO_CHECKOUT_SELECTOR1);
+		WebElement proceedButton2 = findElementBySelector(PROCEED_TO_CHECKOUT_SELECTOR2);
 		
 		if(proceedButton1 != null) {
 			click(PROCEED_TO_CHECKOUT_SELECTOR1);
@@ -75,10 +75,10 @@ public class Amazon extends Procedure {
 		LOGGER.info("Signing in...");
 		
 		click(USERNAME_TEXTBOX_SELECTOR);
-		sendKeys(USERNAME_TEXTBOX_SELECTOR, username);
+		sendKeys(USERNAME_TEXTBOX_SELECTOR, System.getenv("amazonUsername"));
 		click(USERNAME_CONTINUE_SELECTOR);
 		click(PASSWORD_TEXTBOX_SELECTOR);
-		sendKeys(PASSWORD_TEXTBOX_SELECTOR, password);
+		sendKeys(PASSWORD_TEXTBOX_SELECTOR, System.getenv("amazonPassword"));
 		click(SIGNIN_BUTTON_SELECTOR);
 		
 		LOGGER.info("Signed in");

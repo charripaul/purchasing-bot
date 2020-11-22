@@ -11,16 +11,14 @@ public class BotPool {
 	private String url;
 	private String procedureName;
 	private boolean isValid;
-	private Map<String, Object> config;
 	private List<Bot> bots;
 	private Thread controlThread;
 	private int instanceCount;
 	
-	public BotPool(int id, String url, int instanceCount, Map<String, Object> config) {
+	public BotPool(int id, String url, int instanceCount) {
 		this.id = id;
 		this.url = url;
 		this.instanceCount = instanceCount;
-		this.config = config;
 		bots = new ArrayList<>();
 		procedureName = determineSite(url);
 		
@@ -45,7 +43,7 @@ public class BotPool {
 	
 	private void setupBots() {
 		for(int x=0;x<instanceCount;x++) {
-			Bot bot = new Bot(x, url, procedureName, config);
+			Bot bot = new Bot(x, url, procedureName);
 			bots.add(bot);
 		}
 		
@@ -75,8 +73,12 @@ public class BotPool {
 	}
 	
 	private static String determineSite(String url) {
-		if(url.toLowerCase().contains("amazon")) {
+		String loweredUrl = url.toLowerCase();
+		if(loweredUrl.contains("amazon")) {
 			return "amazon";
+		}
+		else if(loweredUrl.contains("bestbuy")) {
+			return "bestbuy";
 		}
 		
 		return null;

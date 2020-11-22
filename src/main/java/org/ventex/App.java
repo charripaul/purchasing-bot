@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
@@ -16,30 +14,21 @@ public class App {
 	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 	
     public static void main( String[] args ){
-    	Map<String, Object> config = getConfigData();
     	extractDriver("/chromedriver.exe");
     	
     	List<String> links = new ArrayList<>();
     	links.add("https://www.amazon.com/gp/product/B08FC5L3RG/ref=ox_sc_saved_title_4?smid=ATVPDKIKX0DER&psc=1");
-    	links.add("https://www.amazon.com/dp/B08FC6MR62/?coliid=IH90F1G2RL9K5&colid=6DFCB5FA7VGW&psc=0&ref_=lv_ov_lig_dp_it_im");
+    	links.add("https://www.bestbuy.com/site/sony-playstation-5-console/6426149.p?skuId=6426149");
     	
     	//1 bootpool for every link, instance count determines number of bots in botpool
     	int instanceCount = 1;
     	List<BotPool> botPoolList = new ArrayList<>();
 
     	for(int x=0;x<links.size();x++) {
-    		BotPool botPool = new BotPool(x, links.get(x), instanceCount, config);
+    		BotPool botPool = new BotPool(x, links.get(x), instanceCount);
     		botPool.startAll();
             botPoolList.add(botPool);
     	}
-    }
-    
-    public static Map<String, Object> getConfigData() {
-    	Map<String, Object> map = new HashMap<>();
-        map.put("amazonUsername", System.getenv("amazonUsername"));
-        map.put("amazonPassword", System.getenv("amazonPassword"));
-        
-        return map;
     }
     
     private static void extractDriver(String path) {

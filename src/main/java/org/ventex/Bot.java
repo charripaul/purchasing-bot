@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.ventex.procedures.Amazon;
+import org.ventex.procedures.BestBuy;
 import org.ventex.procedures.Procedure;
 
 public class Bot implements Runnable{
@@ -15,14 +16,12 @@ public class Bot implements Runnable{
 	private WebDriver chrome;
 	private Procedure procedure;
 	private String procedureName;
-	private Map<String, Object> config;
 	private Thread thread;
 	
-	public Bot(int id, String url, String procName, Map<String, Object> config) {
+	public Bot(int id, String url, String procName) {
 		this.id = id;
 		this.url = url;
 		this.procedureName = procName;
-		this.config = config;
 	}
 	
 	public void start() {
@@ -57,7 +56,10 @@ public class Bot implements Runnable{
 	
 	private void setProcedure() {
 		if(procedureName.equalsIgnoreCase("amazon")) {
-			procedure = new Amazon(chrome, (String) config.get("amazonUsername"), (String) config.get("amazonPassword"));
+			procedure = new Amazon(chrome);
+		}
+		else if(procedureName.equalsIgnoreCase("bestbuy")) {
+			procedure = new BestBuy(chrome);
 		}
 		else {
 			procedure = null;

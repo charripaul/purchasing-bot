@@ -1,7 +1,5 @@
 package org.ventex.procedures;
 
-import java.util.logging.Logger;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,18 +7,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class Procedure {
-	private static final Logger LOGGER = Logger.getLogger(Procedure.class.getName());
 	protected WebDriver browser;
-	protected String username;
-	protected String password;
 	
-	public Procedure(WebDriver browser, String username, String password) {
+	public Procedure(WebDriver browser) {
 		this.browser = browser;
-		this.username = username;
-		this.password = password;
 	}
 	
-	protected WebElement findElement(String elementSelector) {
+	protected WebElement findElementBySelector(String elementSelector) {
 		WebElement element;
 		
 		try {
@@ -32,8 +25,33 @@ public abstract class Procedure {
 		return element;
 	}
 	
-	public void start() {
-		LOGGER.info("Abstract Site class invoked");
+	protected WebElement findElementByXPath(String xpath) {
+		WebElement element;
+		
+		try {
+			element = browser.findElement(By.xpath(xpath));
+		}catch(org.openqa.selenium.NoSuchElementException e) {
+			element = null;
+		}
+		
+		return element;
+	}
+	
+	protected WebElement findElementByName(String name) {
+		WebElement element;
+		
+		try {
+			element = browser.findElement(By.name(name));
+		}catch(org.openqa.selenium.NoSuchElementException e) {
+			element = null;
+		}
+		
+		return element;
+	}
+	
+	protected void clickByXPath(String xpath) {
+		WebDriverWait wait = new WebDriverWait(browser, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).click();
 	}
 	
 	protected void click(String css) {
@@ -45,4 +63,6 @@ public abstract class Procedure {
 		WebDriverWait wait = new WebDriverWait(browser, 20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css))).sendKeys(text);
 	}
+	
+	public abstract void start();
 }
