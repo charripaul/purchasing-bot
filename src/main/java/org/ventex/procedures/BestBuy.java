@@ -28,7 +28,7 @@ public class BestBuy extends Procedure{
 			checkout();
 			signin();
 			purchase();
-			Thread.sleep(15000);
+			Thread.sleep(10000);
 			browser.close();
 		} catch (InterruptedException e) {
 			LOGGER.info("Thread sleep error");
@@ -89,7 +89,7 @@ public class BestBuy extends Procedure{
 			sendKeys(SEC_CODE_SELECTOR, System.getenv("bestbuySec"));
 		}
 		
-		click(PLACE_ORDER_SELECTOR);
+//		click(PLACE_ORDER_SELECTOR);
 		
 		LOGGER.info("Order placed, shutting down worker.");
 	}

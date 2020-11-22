@@ -28,7 +28,7 @@ public class Amazon extends Procedure {
 			proceedToCheckout();
 			signin();
 			purchase();
-			Thread.sleep(15000);
+			Thread.sleep(10000);
 			browser.close();
 		} catch (InterruptedException e) {
 			LOGGER.severe("Thread sleep error");
@@ -56,7 +56,7 @@ public class Amazon extends Procedure {
 	
 	private void proceedToCheckout() throws InterruptedException {
 		LOGGER.info("Proceeding to checkout...");
-		Thread.sleep(3000);			//wait for slidein animation
+		Thread.sleep(5000);			//wait for slidein animation
 		
 		WebElement proceedButton1 = findElementBySelector(PROCEED_TO_CHECKOUT_SELECTOR1);
 		WebElement proceedButton2 = findElementBySelector(PROCEED_TO_CHECKOUT_SELECTOR2);

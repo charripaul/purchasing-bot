@@ -1,6 +1,5 @@
 package org.ventex;
 
-import java.util.Map;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.WebDriver;
