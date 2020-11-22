@@ -65,9 +65,9 @@ public class App {
     
     public static void setBrowserOptions() {
     	if(System.getenv("GECKODRIVER_PATH") != null) {
+    		LOGGER.info("Heroku Environment detected, adding low resource usage Browser Options");
     		browserOptions.setBinary(System.getenv("FIREFOX_BIN"));
     		browserOptions.addArguments("--headless");
-    		LOGGER.info("Heroku Environment detected, adding low resource usage Browser Options");
     	}
 	}
 }
