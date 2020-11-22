@@ -65,7 +65,7 @@ public class App {
     	ChromeOptions options = new ChromeOptions();
 
     	if(System.getenv("CHROMEDRIVER_PATH") != null) {
-    		options.addArguments("--disable-dev-shm-usage", "--no-sandbox");
+    		options.addArguments("--headless", "--disable-dev-shm-usage", "--no-sandbox");
     		LOGGER.info("Heroku Environment detected, adding low resource usage Chrome Options");
     	}
     	
