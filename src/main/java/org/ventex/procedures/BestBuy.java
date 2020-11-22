@@ -58,7 +58,7 @@ public class BestBuy extends Procedure{
 	public void goToCart() throws InterruptedException {
 		LOGGER.info("Going to cart...");
 		
-		Thread.sleep(5000);
+		Thread.sleep(30000);
 		clickByXPath(GO_TO_CART_XPATH);
 	}
 	
