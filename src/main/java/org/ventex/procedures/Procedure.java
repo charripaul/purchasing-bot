@@ -60,6 +60,7 @@ public abstract class Procedure {
 			try {
 				WebDriverWait wait = new WebDriverWait(browser, 20);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).click();
+				pass = true;
 			}catch(NoSuchElementException e) {
 				pass = false;
 				LOGGER.warning("Retrying previous click");
