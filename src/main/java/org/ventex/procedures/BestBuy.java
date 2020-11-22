@@ -17,10 +17,10 @@ public class BestBuy extends Procedure{
 	private final String PLACE_ORDER_SELECTOR = "#checkoutApp > div.page-spinner.page-spinner--out > div:nth-child(1) > div.checkout.large-view.fast-track > main > div.checkout__container.checkout__container-fast-track > div.checkout__col.checkout__col--primary > div > div.checkout-panel.contact-card > div.contact-card__order-button > div > button";
 	private final String HOME_SELECTOR = "#header-block > div.header-large > div.top-navigation-section > div > div.bby-logo-lv > a > img";
 	private final String CART_SELECTOR = "#shop-cart-icon-e3cce103-4193-4472-bf32-59a29af6ac2a > div > div > div > a > img";
+	private final String CART_NUM_SELECTOR = "#shop-cart-icon-e3cce103-4193-4472-bf32-59a29af6ac2a > div > div > div > a > div";
 	
 	public BestBuy(WebDriver browser) {
 		super(browser);
-		browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
 	public void start() {
@@ -63,6 +63,8 @@ public class BestBuy extends Procedure{
 		
 		click(HOME_SELECTOR);
 		Thread.sleep(5000);
+		WebElement num = findElementBySelector(CART_NUM_SELECTOR);
+		LOGGER.info("Cart num:" + num.getText());
 		click(CART_SELECTOR);
 	}
 	
