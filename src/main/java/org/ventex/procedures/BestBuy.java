@@ -55,15 +55,17 @@ public class BestBuy extends Procedure{
 		clickByXPath(ADD_TO_CART_XPATH);
 	}
 	
-	public void goToCart() {
+	public void goToCart() throws InterruptedException {
 		LOGGER.info("Going to cart...");
 		
+		Thread.sleep(5000);
 		clickByXPath(GO_TO_CART_XPATH);
 	}
 	
-	public void checkout() {
+	public void checkout() throws InterruptedException {
 		LOGGER.info("Checking out...");
 		
+		Thread.sleep(5000);
 		click(CHECKOUT_SELECTOR);
 	}
 	
