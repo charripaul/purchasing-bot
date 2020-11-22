@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class App {
@@ -64,6 +65,7 @@ public class App {
     }
     
     public static void setBrowserOptions() {
+    	System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
     	if(System.getenv("GECKODRIVER_PATH") != null) {
     		LOGGER.info("Heroku Environment detected, adding low resource usage Browser Options");
     		browserOptions.setBinary(System.getenv("FIREFOX_BIN"));
