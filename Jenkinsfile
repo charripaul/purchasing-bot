@@ -36,8 +36,10 @@ pipeline {
 			}
 		}
 		stage('Deploy to Kubernetes cluster'){
-			script {
-			  kubernetesDeploy(configs: "values.yaml", kubeconfigId: "ventexclusterconfig")
+			steps{
+				script {
+				  kubernetesDeploy(configs: "values.yaml", kubeconfigId: "ventexclusterconfig")
+				}
 			}
 		}
 	}
