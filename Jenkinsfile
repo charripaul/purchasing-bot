@@ -4,7 +4,7 @@ pipeline {
 		dockerImage = ""
 	}
 	
-	agent{
+	agent {
 		docker {
             image 'maven:3-alpine' 
             args '-v /root/.m2:/root/.m2' 
@@ -12,21 +12,21 @@ pipeline {
 	}
 	
 	stages {
-		stage(‘Install build’) {
+		stage('Install build') {
 			steps{
 				script {
 					sh 'mvn clean install'
 				}
 			}
 		}
-		stage(‘Build Image’) {
+		stage('Build Image') {
 			steps{
 				script {
 					dockerImage = docker.build registry + ":$BUILD_NUMBER"
 				}
 			}
 		}
-		stage(‘Deploy’) {
+		stage('Deploy') {
 			steps{
 				script {
 					docker.withRegistry(registry) {
