@@ -8,16 +8,15 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class App {
 	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
-	public static final FirefoxOptions browserOptions = new FirefoxOptions();
+	public static final ChromeOptions browserOptions = new ChromeOptions();
 	
     public static void main( String[] args ){
     	setBrowserOptions();
-    	extractDriver("/geckodriver.exe");
+    	extractDriver("/chromedriver.exe");
     	
     	List<String> links = new ArrayList<>();
     	links.add("https://www.amazon.com/gp/product/B08FC5L3RG/ref=ox_sc_saved_title_4?smid=ATVPDKIKX0DER&psc=1");
@@ -54,22 +53,27 @@ public class App {
 			}
         }
         
-        if(System.getenv("GECKODRIVER_PATH") == null) {
-        	System.setProperty("webdriver.gecko.driver", driver.getAbsolutePath());
+        if(System.getenv("CHROMEDRIVER_PATH") == null) {
+        	System.setProperty("webdriver.chrome.driver", driver.getAbsolutePath());
         }
         else {
-        	System.setProperty("webdriver.gecko.driver", System.getenv("GECKODRIVER_PATH"));
+        	System.setProperty("webdriver.chrome.driver", System.getenv("CHROMEDRIVER_PATH"));
         }
         
         LOGGER.info("Driver location set");
     }
     
     public static void setBrowserOptions() {
-    	System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
-    	if(System.getenv("GECKODRIVER_PATH") != null) {
+    	if(System.getenv("CHROMEDRIVER_PATH") != null) {
     		LOGGER.info("Heroku Environment detected, adding low resource usage Browser Options");
-    		browserOptions.setBinary(System.getenv("FIREFOX_BIN"));
+    		browserOptions.setBinary(System.getenv("GOOGLE_CHROME_BIN"));
     		browserOptions.addArguments("--headless");
+    		browserOptions.addArguments("--proxy-server=*");
+    		browserOptions.addArguments("--proxy-bypass-list=*");
+    		browserOptions.addArguments( "--disable-dev-shm-usage");
+    		browserOptions.addArguments("--disable-gpu");
+    		browserOptions.addArguments("--no-proxy-server");
+    		browserOptions.addArguments("--no-sandbox");
     	}
 	}
 }

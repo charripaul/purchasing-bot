@@ -3,7 +3,7 @@ package org.ventex;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.ventex.procedures.Amazon;
 import org.ventex.procedures.BestBuy;
 import org.ventex.procedures.Procedure;
@@ -49,7 +49,7 @@ public class Bot implements Runnable {
 			browser.close();
 		}
 
-		browser = new FirefoxDriver(App.browserOptions);
+		browser = new ChromeDriver(App.browserOptions);
 		browser.get(url);
 	}
 
