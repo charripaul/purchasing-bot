@@ -1,0 +1,37 @@
+apiVersion: purchasing-bot/v1.0.0
+kind: Deployment
+metadata:
+  labels:
+    app: purchasing-bot
+  name: purchasing-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: purchasing-bot
+  template:
+    metadata:
+      labels:
+        app: purchasing-bot
+    spec:
+      containers:
+      - image: 104.131.4.183:5000/deployapp/purchasingbot:1.0.0
+        imagePullPolicy: Always
+        name: purchasing-bot
+
+---
+apiVersion: v1.0.0
+kind: Worker
+metadata:
+  labels:
+    app: purchasing-bot
+  name: purchasing-bot
+spec:
+  ports:
+  - nodePort: 32223
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  nodeSelector:
+    botlevel=low
+  type: NodePort
