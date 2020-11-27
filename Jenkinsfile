@@ -21,16 +21,14 @@ pipeline {
 		stage('Build Image') {
 			steps{
 				script {
+					def dockerHome = tool 'docker'
+        			env.PATH = "${dockerHome}/bin:${env.PATH}"
 					dockerImage = docker.build registry + ":$BUILD_NUMBER"
 				}
 			}
 		}
 		stage('Deploy') {
 			steps{
-				script {
-					def dockerHome = tool 'docker'
-        			env.PATH = "${dockerHome}/bin:${env.PATH}"
-				}
 				script {
 					docker.withRegistry(registry) {
 						dockerImage.push()
