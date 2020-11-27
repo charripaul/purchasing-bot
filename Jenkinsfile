@@ -28,6 +28,10 @@ pipeline {
 		stage('Deploy') {
 			steps{
 				script {
+					def dockerHome = tool 'docker'
+        			env.PATH = "${dockerHome}/bin:${env.PATH}"
+				}
+				script {
 					docker.withRegistry(registry) {
 						dockerImage.push()
 					}
