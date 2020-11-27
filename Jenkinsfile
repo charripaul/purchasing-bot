@@ -1,20 +1,19 @@
 pipeline {
 	environment {
 		registry = "104.131.4.183:5000/deployapp/purchasingbot"
-		dockerImage = ""
 	}
 	
 	agent {
 		docker {
-            image 'openjdk:8-jdk-alpine' 
-            args '-v /root/.m2:/root/.m2' 
+            image 'maven:3-alpine'
+            args '-v ~root/.m2' 
         }
 	}
 	
 	stages {
 		stage('Install build') {
 			steps{
-				withMaven {
+				script {
 					sh 'mvn clean install'
 				}
 			}
