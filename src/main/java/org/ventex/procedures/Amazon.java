@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 public class Amazon extends Procedure {
 	private static final Logger LOGGER = Logger.getLogger(Amazon.class.getName());
 	private final String ADD_TO_CART_SELECTOR = "#add-to-cart-button";
+	private final String PROTECTION_SELECTOR = "#attachSiNoCoverage-announce";
 	private final String PROCEED_TO_CHECKOUT_SELECTOR1 = "#attach-sidesheet-checkout-button > span > input";
 	private final String PROCEED_TO_CHECKOUT_SELECTOR2 = "#hlb-ptc-btn-native";
 	private final String USERNAME_TEXTBOX_SELECTOR = "#ap_email";
@@ -57,6 +58,12 @@ public class Amazon extends Procedure {
 	private void proceedToCheckout() throws InterruptedException {
 		LOGGER.info("Proceeding to checkout...");
 		Thread.sleep(5000);			//wait for slidein animation
+		
+		//skip protection
+		WebElement skipProtectionButton = findElementBySelector(PROTECTION_SELECTOR);
+		if(skipProtectionButton != null) {
+			click(PROTECTION_SELECTOR);
+		}
 		
 		WebElement proceedButton1 = findElementBySelector(PROCEED_TO_CHECKOUT_SELECTOR1);
 		WebElement proceedButton2 = findElementBySelector(PROCEED_TO_CHECKOUT_SELECTOR2);
