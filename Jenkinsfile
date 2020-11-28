@@ -3,13 +3,6 @@ pipeline {
 		registry = "104.131.4.183:5000/deployapp/purchasingbot"
 	}
 	
-	agent {
-		docker {
-            image 'maven:3-alpine'
-            args '-v ~root/.m2' 
-        }
-	}
-	
 	stages {
 		stage('Install build') {
 			steps{
