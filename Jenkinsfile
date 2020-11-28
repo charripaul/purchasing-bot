@@ -3,7 +3,12 @@ pipeline {
 		registry = "104.131.4.183:5000/deployapp/purchasingbot"
 	}
 	
-	agent any
+	agent {
+		dockerfile {
+	        filename 'Dockerfile'
+	        args '-v /tmp:/tmp'
+	    }
+	}
 	
 	stages {
 		stage('Install build') {
@@ -16,7 +21,8 @@ pipeline {
 		stage('Build Image') {
 			steps{
 				script {
-					docker build registry + ":$BUILD_NUMBER"
+					echo ll
+					docker build -t purchasing-bot/docker-bot:1.0.0
 				}
 			}
 		}
