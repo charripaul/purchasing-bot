@@ -3,7 +3,7 @@ pipeline {
 		registry = "104.131.4.183:5000/deployapp/purchasingbot"
 	}
 	
-	agent: any
+	agent any
 	
 	stages {
 		stage('Install build') {
