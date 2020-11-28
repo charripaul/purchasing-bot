@@ -30,7 +30,7 @@ pipeline {
 		stage('Deploy') {
 			steps{
 				script {
-					docker.withRegistry(registry) {
+					docker.withRegistry(registry, registryCredential) {
 						dockerImage.push("latest")
 					}
 				}
