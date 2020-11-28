@@ -22,7 +22,7 @@ pipeline {
 			steps{
 				script {
 					echo ll
-					docker build -t purchasing-bot/docker-bot:1.0.0
+					docker build -t purchasing-bot/docker-bot
 				}
 			}
 		}
