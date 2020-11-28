@@ -1,6 +1,7 @@
 pipeline {
 	environment {
-		registry = "104.131.4.183:5000/deployapp/purchasingbot"
+		registry = "localhost:5000"
+		dockerImage = ""
 	}
 	
 	agent {
@@ -21,7 +22,7 @@ pipeline {
 		stage('Build Image') {
 			steps{
 				script {
-					docker build -t purchasing-bot/docker-bot
+					dockerimage = docker.build("purchasing-bot")
 				}
 			}
 		}
@@ -29,7 +30,7 @@ pipeline {
 			steps{
 				script {
 					docker.withRegistry(registry) {
-						dockerImage.push()
+						dockerImage.push("latest")
 					}
 				}
 			}
