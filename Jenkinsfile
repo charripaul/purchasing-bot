@@ -1,6 +1,7 @@
 pipeline {
 	environment {
-		registry = "localhost:5000"
+		registry = "chrisharripaul/purchasing-bot"
+		registryCredential = 'docker-creds'
 		dockerImage = ""
 	}
 	
@@ -22,7 +23,7 @@ pipeline {
 		stage('Build Image') {
 			steps{
 				script {
-					dockerimage = docker.build("purchasing-bot")
+					dockerimage = docker.build registry + ":latest"
 				}
 			}
 		}

@@ -15,7 +15,7 @@ spec:
         app: purchasing-bot
     spec:
       containers:
-      - image: 104.131.4.183:5000/deployapp/purchasingbot:1.0.0
+      - image: chrisharripaul/purchasing-bot:latest
         imagePullPolicy: Always
         name: purchasing-bot
 
