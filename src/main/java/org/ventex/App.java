@@ -22,7 +22,8 @@ public class App {
     	links.add("https://www.amazon.com/gp/product/B08FC5L3RG/ref=ox_sc_saved_title_4?smid=ATVPDKIKX0DER&psc=1");
     	links.add("https://www.amazon.com/dp/B08FC6MR62/?coliid=INMNG23U2KWCV&colid=13HJVDSXIWZQ&psc=0&ref_=lv_ov_lig_dp_it");
 //    	links.add("https://www.amazon.com/Watch-Dogs-Legion-PlayStation-5-Standard/dp/B08FS6BB9N/ref=sr_1_3?dchild=1&keywords=games+ps5&qid=1606446081&sr=8-3");
-//    	links.add("https://www.bestbuy.com/site/marvels-spider-man-miles-morales-standard-launch-edition-playstation-5/6430146.p?skuId=6430146");
+//    	links.add("https://www.amazon.com/Call-Duty-Black-Cold-PlayStation-5/dp/B08GR4GNRK/ref=sr_1_4?dchild=1&keywords=ps5+games&qid=1606534553&sr=8-4");
+//    	links.add("https://www.amazon.com/Powerbeats-Pro-Totally-Wireless-Earphones/dp/B07R5QD598?ref_=Oct_DLandingS_D_4543d8cf_60&smid=ATVPDKIKX0DER");
 //    	links.add("https://www.amazon.com/SAMSUNG-QN32Q50RAFXZA-32Q50-Smart-TV2019/dp/B07W5QYD2K?smid=ATVPDKIKX0DER&pf_rd_r=XGQDGNQJ3WNAGQMT3RK2&pf_rd_p=9fe30576-c9a0-4f05-b195-01454c56e349");
     	
     	//1 bootpool for every link, instance count determines number of bots in botpool

@@ -7,15 +7,16 @@ import org.openqa.selenium.WebElement;
 
 public class Amazon extends Procedure {
 	private static final Logger LOGGER = Logger.getLogger(Amazon.class.getName());
-	private final String ADD_TO_CART_SELECTOR = "#add-to-cart-button";
-	private final String PROTECTION_SELECTOR = "#attachSiNoCoverage-announce";
-	private final String PROCEED_TO_CHECKOUT_SELECTOR1 = "#attach-sidesheet-checkout-button > span > input";
-	private final String PROCEED_TO_CHECKOUT_SELECTOR2 = "#hlb-ptc-btn-native";
-	private final String USERNAME_TEXTBOX_SELECTOR = "#ap_email";
-	private final String USERNAME_CONTINUE_SELECTOR = "#continue";
-	private final String PASSWORD_TEXTBOX_SELECTOR = "#ap_password";
-	private final String SIGNIN_BUTTON_SELECTOR = "#signInSubmit";
-	private final String PLACE_ORDER_SELECTOR = "#submitOrderButtonId > span > input";
+	private final static String ADD_TO_CART_SELECTOR = "#add-to-cart-button";
+	private final static String PROTECTION_SELECTOR = "#attachSiNoCoverage-announce";
+	private final static String PROTECTION_SELECTOR2 = "#siNoCoverage-announce";
+	private final static String PROCEED_TO_CHECKOUT_SELECTOR1 = "#attach-sidesheet-checkout-button > span > input";
+	private final static String PROCEED_TO_CHECKOUT_SELECTOR2 = "#hlb-ptc-btn-native";
+	private final static String USERNAME_TEXTBOX_SELECTOR = "#ap_email";
+	private final static String USERNAME_CONTINUE_SELECTOR = "#continue";
+	private final static String PASSWORD_TEXTBOX_SELECTOR = "#ap_password";
+	private final static String SIGNIN_BUTTON_SELECTOR = "#signInSubmit";
+	private final static String PLACE_ORDER_SELECTOR = "#submitOrderButtonId > span > input";
 	
 	public Amazon(WebDriver browser) {
 		super(browser);
@@ -55,15 +56,23 @@ public class Amazon extends Procedure {
 		click(ADD_TO_CART_SELECTOR);
 	}
 	
-	private void proceedToCheckout() throws InterruptedException {
-		LOGGER.info("Proceeding to checkout...");
-		Thread.sleep(5000);			//wait for slidein animation
-		
-		//skip protection
+	private void skipProtection() {
 		WebElement skipProtectionButton = findElementBySelector(PROTECTION_SELECTOR);
+		WebElement skipProtectionButton2 = findElementBySelector(PROTECTION_SELECTOR2);
+		
 		if(skipProtectionButton != null) {
 			click(PROTECTION_SELECTOR);
 		}
+		else if(skipProtectionButton2 != null) {
+			click(PROTECTION_SELECTOR2);
+		}
+	}
+	
+	private void proceedToCheckout() throws InterruptedException {
+		LOGGER.info("Proceeding to checkout...");
+		Thread.sleep(5000);
+		
+		skipProtection();
 		
 		WebElement proceedButton1 = findElementBySelector(PROCEED_TO_CHECKOUT_SELECTOR1);
 		WebElement proceedButton2 = findElementBySelector(PROCEED_TO_CHECKOUT_SELECTOR2);
@@ -75,7 +84,7 @@ public class Amazon extends Procedure {
 			click(PROCEED_TO_CHECKOUT_SELECTOR2);
 		}
 		else {
-			LOGGER.severe("Proceed to checkout button not found.");
+			LOGGER.severe("Proceed to checkout button not found. Trying again.");
 		}
 	}
 	
