@@ -21,7 +21,7 @@ pipeline {
 		stage('Build Image') {
 			steps{
 				script {
-					echo ll
+					echo ls
 					docker build -t purchasing-bot/docker-bot
 				}
 			}
