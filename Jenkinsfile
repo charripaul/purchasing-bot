@@ -3,12 +3,7 @@ pipeline {
 		registry = "104.131.4.183:5000/deployapp/purchasingbot"
 	}
 	
-	agent {
-		dockerfile {
-	        filename 'Dockerfile'
-	        args '-v /tmp:/tmp'
-	    }
-	}
+	agent: any
 	
 	stages {
 		stage('Install build') {
