@@ -8,7 +8,7 @@ pipeline {
 	agent {
 		dockerfile {
 	        filename 'Dockerfile'
-	        args '-v /var/run/docker.sock:/var/run/docker.sock --privileged'
+	        additionalBuildArgs '-v /var/run/docker.sock:/var/run/docker.sock --privileged'
 	    }
 	}
 	
