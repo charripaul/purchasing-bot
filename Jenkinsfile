@@ -9,6 +9,7 @@ pipeline {
 		dockerfile {
 	        filename 'Dockerfile'
 	        args '-v /tmp:/tmp'
+	        label 'docker-agent'
 	    }
 	}
 	
