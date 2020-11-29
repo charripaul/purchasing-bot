@@ -23,9 +23,7 @@ pipeline {
 		}
 		stage('Build Image') {
 			steps{
-				script {
-					dockerimage = docker.build registry + ":latest"
-				}
+				dockerimage = docker.build registry + ":latest"
 			}
 		}
 		stage('Deploy') {
