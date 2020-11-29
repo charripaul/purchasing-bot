@@ -1,4 +1,4 @@
-FROM maven:3-alpine
+FROM ubuntu:16.04
 
 USER root
 
@@ -7,6 +7,14 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${
   && tar xzvf docker-${DOCKERVERSION}.tgz --strip 1 \
                  -C /usr/local/bin docker/docker \
   && rm docker-${DOCKERVERSION}.tgz
+  
+RUN apt-get install systemctl
+RUN systemctl start docker
+
+
+FROM maven:3-alpine
+
+
 
 RUN docker run hello-world
 
