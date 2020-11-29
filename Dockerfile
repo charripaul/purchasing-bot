@@ -8,7 +8,6 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${
                  -C /usr/local/bin docker/docker \
   && rm docker-${DOCKERVERSION}.tgz
 
-RUN apt-get install systemctl
 RUN docker run hello-world
 
 COPY target/purchasing-bot-1.0.0.jar /bot.jar
