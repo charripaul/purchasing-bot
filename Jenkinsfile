@@ -8,7 +8,7 @@ pipeline {
 	agent {
 		docker {
 	        image 'maven:3-alpine'
-	        label 'master'
+	        label 'docker-agent'
 	        args  '-v /tmp:/tmp'
 	    }
 	}
