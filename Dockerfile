@@ -1,6 +1,6 @@
 FROM maven:3-alpine
 
-RUN def dockerHome = tool 'myDocker'
+RUN dockerHome = tool 'myDocker'
 RUN env.PATH = "${dockerHome}/bin:${env.PATH}"
        
 
