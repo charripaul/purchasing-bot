@@ -9,7 +9,7 @@ pipeline {
 		dockerfile {
 	        filename 'Dockerfile'
 	        args '-v /tmp:/tmp --group-add 0 -v jenkinsvolume:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v docker:/usr/bin/docker'
-	        label 'docker-agent'
+	        label 'jenkins-agent'
 	    }
 	}
 	
