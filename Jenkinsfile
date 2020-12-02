@@ -8,7 +8,7 @@ pipeline {
 	agent {
 		dockerfile {
 	        filename 'Dockerfile'
-	        args '-v /tmp:/tmp --group-add $(stat -c \'\%g\' /var/run/docker.sock) -v jenkinsvolume:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v docker:/usr/bin/docker'
+	        args '-v /tmp:/tmp --group-add $(stat -c %g /var/run/docker.sock) -v jenkinsvolume:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v docker:/usr/bin/docker'
 	        label 'docker-agent'
 	    }
 	}
