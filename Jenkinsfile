@@ -8,7 +8,6 @@ pipeline {
 	agent {
 		dockerfile {
 	        filename 'Dockerfile'
-	        additionalBuildArgs '--build-arg GROUP_ID=998'
 	        args '-v /tmp:/tmp --group-add 0 -v jenkinsvolume:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v docker:/usr/bin/docker'
 	    }
 	}
