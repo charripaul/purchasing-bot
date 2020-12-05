@@ -5,7 +5,7 @@ pipeline {
 		dockerImage = ""
 	}
 	
-	agent none
+	agent master
 	
 	stages {
 		stage('Install build') {
