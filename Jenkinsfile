@@ -8,7 +8,7 @@ pipeline {
 	agent {
 		dockerfile {
 	        filename 'Dockerfile'
-	        args '-d --name systemd-ubuntu --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro jrei/systemd-ubuntu'
+	        args '-v /tmp:/tmp -v jenkinsvolume:/var/jenkins_home'
 	    }
 	}
 	
