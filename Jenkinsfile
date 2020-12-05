@@ -2,7 +2,7 @@ pipeline {
 	environment {
 		registry = "chrisharripaul/purchasing-bot"
 		registryCredential = 'dockerhub'
-		dockerImage = ""
+		dockerImage = ''
 	}
 	
 	agent any
