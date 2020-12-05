@@ -5,12 +5,7 @@ pipeline {
 		dockerImage = ""
 	}
 	
-	agent {
-		dockerfile {
-	        filename 'Dockerfile'
-	        args '-v /tmp:/tmp -v jenkinsvolume:/var/jenkins_home'
-	    }
-	}
+	agent none
 	
 	stages {
 		stage('Install build') {
