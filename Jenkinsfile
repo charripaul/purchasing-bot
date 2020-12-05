@@ -8,7 +8,7 @@ pipeline {
 	agent {
 		dockerfile {
 	        filename 'Dockerfile'
-	        args '-v /tmp:/tmp'
+	        args '-v /tmp:/tmp --privileged --name dind'
 	    }
 	}
 	

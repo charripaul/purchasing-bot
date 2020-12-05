@@ -1,12 +1,13 @@
-FROM ubuntu:18.04
+FROM docker:17.06.0-dind
 USER root
-
-RUN apt-get update
-RUN apt-get -y install curl
-
-RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
-  && tar xzvf docker-17.04.0-ce.tgz \
-  && mv docker/docker /usr/local/bin \
-  && rm -r docker docker-17.04.0-ce.tgz
   
-RUN sytemd start docker
+RUN set -eux; \
+	wget -O /usr/local/bin/dind "https://raw.githubusercontent.com/docker/docker/${DIND_COMMIT}/hack/dind"; \
+	chmod +x /usr/local/bin/dind
+
+COPY dockerd-entrypoint.sh /usr/local/bin/
+
+VOLUME /var/lib/docker
+EXPOSE 2375 2376
+
+ENTRYPOINT ["dockerd-entrypoint.sh"]
