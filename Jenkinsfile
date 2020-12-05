@@ -8,7 +8,7 @@ pipeline {
 	agent {
 		dockerfile {
 	        filename 'Dockerfile'
-	        args '-v /tmp:/tmp --group-add 0 -v docker:/usr/bin/docker'
+	        args '--group-add 0 -v docker:/usr/bin/docker'
 	    }
 	}
 	
