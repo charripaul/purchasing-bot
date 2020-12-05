@@ -8,7 +8,7 @@ pipeline {
 	agent {
 		dockerfile {
 	        filename 'Dockerfile'
-	        args '-v /tmp:/tmp --group-add 0 --user 0 -v /var/run/docker.sock:/var/run/docker.sock -v docker:/usr/bin/docker --privileged setfacl -m user:root:rw /var/run/docker.sock'
+	        args '-v /tmp:/tmp'
 	    }
 	}
 	
@@ -23,7 +23,6 @@ pipeline {
 		stage('Build Image') {
 			steps{
 				script {
-					sh 'whoami'
 					dockerimage = docker.build registry + ":latest"
 				}
 			}
