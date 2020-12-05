@@ -1,4 +1,4 @@
-FROM defn/ubuntu-systemd
+FROM systemd-ubuntu
 USER root
 
 RUN apt-get update
