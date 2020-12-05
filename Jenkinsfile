@@ -23,6 +23,7 @@ pipeline {
 		stage('Build Image') {
 			steps{
 				script {
+					sh 'whoami'
 					dockerimage = docker.build registry + ":latest"
 				}
 			}
