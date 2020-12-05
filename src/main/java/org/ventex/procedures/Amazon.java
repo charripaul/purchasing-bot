@@ -30,7 +30,7 @@ public class Amazon extends Procedure {
 			proceedToCheckout();
 			signin();
 			purchase();
-			Thread.sleep(10000);
+			Thread.sleep(5000);
 			browser.close();
 		} catch (InterruptedException e) {
 			LOGGER.severe("Thread sleep error");
