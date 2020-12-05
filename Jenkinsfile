@@ -15,14 +15,14 @@ pipeline {
 				}
 			}
 		}
-		stage('Build Image') {
+		stage('Build image') {
 			steps{
 				script {
 					dockerimage = docker.build registry + ":latest"
 				}
 			}
 		}
-		stage('Deploy') {
+		stage('Push image to registry') {
 			steps{
 				script {
 					docker.withRegistry(registry, registryCredential) {
