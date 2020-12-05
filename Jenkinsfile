@@ -8,7 +8,7 @@ pipeline {
 	agent {
 		dockerfile {
 	        filename 'Dockerfile'
-	        args '-v /tmp:/tmp -v docker:/usr/bin/docker'
+	        args '-v /tmp:/tmp -v docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock'
 	    }
 	}
 	
