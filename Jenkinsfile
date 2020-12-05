@@ -8,7 +8,7 @@ pipeline {
 	agent {
 		dockerfile {
 	        filename 'Dockerfile'
-	        args '-v /tmp:/tmp --privileged --name dind'
+	        args '-v /tmp:/tmp'
 	    }
 	}
 	
@@ -23,6 +23,7 @@ pipeline {
 		stage('Build Image') {
 			steps{
 				script {
+					sh 'docker build -t chrisharripaul/purchasing-bot'
 					dockerimage = docker.build registry + ":latest"
 				}
 			}
