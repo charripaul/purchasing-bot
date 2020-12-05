@@ -1,4 +1,4 @@
-FROM jrei/systemd-ubuntu
+FROM jrei/systemd-ubuntu:latest
 USER root
 
 RUN apt-get update
