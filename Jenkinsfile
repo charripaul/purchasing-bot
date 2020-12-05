@@ -8,7 +8,7 @@ pipeline {
 	agent {
 		dockerfile {
 	        filename 'Dockerfile'
-	        args '-v /tmp:/tmp'
+	        args '-v /tmp:/tmp -v jenkinsvolume:/var/jenkins_home'
 	    }
 	}
 	
@@ -23,7 +23,6 @@ pipeline {
 		stage('Build Image') {
 			steps{
 				script {
-					sh 'docker build -t chrisharripaul/purchasing-bot'
 					dockerimage = docker.build registry + ":latest"
 				}
 			}
