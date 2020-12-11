@@ -29,6 +29,7 @@ public class Amazon extends Procedure {
 			clickAddToCart();
 			proceedToCheckout();
 			signin();
+                        Thread.sleep(1000);
 			purchase();
 			Thread.sleep(5000);
 			browser.close();
